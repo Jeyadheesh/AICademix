@@ -88,11 +88,9 @@ export async function GET(request: NextRequest) {
       if (
         point.payload &&
         point.payload.metadata &&
-        (point.payload.metadata as { filename: string }).filename
+        point.payload.metadata.filename
       ) {
-        filenames.add(
-          (point.payload.metadata as { filename: string }).filename
-        );
+        filenames.add(point.payload.metadata.filename);
       }
     }
 
