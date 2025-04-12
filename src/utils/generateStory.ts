@@ -18,7 +18,7 @@ type Props = {
 export async function generateStory({
   topic,
   context,
-  maxNbPanels,
+  maxNbPanels = 4,
   previousPanel,
 }: Props) {
   try {
@@ -43,7 +43,7 @@ export async function generateStory({
     const firstNextOrLast =
       existingPanels.length === 0
         ? "first"
-        : maxNbPanels! - existingPanels.length === maxNbPanels
+        : maxNbPanels - existingPanels.length === maxNbPanels
         ? "last"
         : "next";
 
@@ -59,7 +59,7 @@ Instructions:
 
 For the ${firstNextOrLast} ${nbPanelsToGenerate} panels (out of 4 total):  
 - Provide detailed drawing instructions (character gender, age, clothing, location, visual cues for technical concepts).  
-- Write captions that include 1-2 technical terms from the context.  
+- Write captions (less than 100 characters) that include 1-2 technical terms from the context.  
 - Ensure continuity with the broader story (${maxNbPanels} panels total). 
           output format must be : 
             (Json)

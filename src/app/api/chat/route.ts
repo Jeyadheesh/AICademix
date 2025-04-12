@@ -9,7 +9,7 @@ const qdrant = new QdrantClient({ url: "http://localhost:6333" });
 const collectionName = "ai-vita-documents";
 
 const embeddings = new GoogleGenerativeAIEmbeddings({
-  apiKey: process.env.GEMINI_API_KEY,
+  apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY,
   modelName: "text-embedding-004",
 });
 
@@ -20,9 +20,7 @@ const vectorStore = await QdrantVectorStore.fromExistingCollection(embeddings, {
 
 export async function POST(request: NextRequest) {
   try {
-    // Extract filenames from query parameters
     const { filenames, query } = await request.json();
-    // const filenames = searchParams.get("filenames");
 
     if (!filenames) {
       return NextResponse.json(
@@ -42,9 +40,10 @@ export async function POST(request: NextRequest) {
         },
       ],
     });
+    const context = results.map((doc) => doc.pageContent).join("\n");
 
     // Return the matched documents
-    return NextResponse.json({ results });
+    return NextResponse.json({ context });
   } catch (error) {
     console.error("Error retrieving documents:", error);
     return NextResponse.json(

@@ -144,7 +144,6 @@ const ComicGenerator = () => {
                 4 * (count / 4) - 4 + i > 0
                   ? updatedStory[4 * (count / 4) - 4 + 1 + i + 3]
                   : undefined,
-              llmModel: llmModel,
             });
             success = true;
           } catch (error) {
@@ -189,8 +188,8 @@ const ComicGenerator = () => {
         query: topic,
         filenames: selectedFiles.map((file) => file.name),
       });
-
-      const context = response.data.context;
+      
+      const context = response.data.context;      
       if (!context || context.trim() === "") {
         console.error(
           "No relevant information found in the uploaded documents."
@@ -202,10 +201,6 @@ const ComicGenerator = () => {
       console.error("Error fetching context:", error);
       return null;
     }
-  };
-
-  const handleSelectChange = (llmModelType: llmModel) => {
-    setLlmModel(llmModelType);
   };
 
   return (
@@ -232,7 +227,7 @@ const ComicGenerator = () => {
 
       <div className="flex justify-end gap-x-4 w-3/4 mx-auto mt-4">
         <DocumentModal />
-        <LLMSelect handleSelectChange={(e) => handleSelectChange(e)} />
+        {/* <LLMSelect handleSelectChange={(e) => handleSelectChange(e)} /> */}
       </div>
       <div className="w-full mt-2 min-h-screen flex flex-col items-center justify-center gap-y-4">
         <div className=" flex  w-3/4 gap-x-3">
