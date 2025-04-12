@@ -9,7 +9,7 @@ const qdrant = new QdrantClient({ url: "http://localhost:6333" });
 const collectionName = "ai-vita-documents";
 
 const embeddings = new GoogleGenerativeAIEmbeddings({
-  apiKey: process.env.NEXT_PUBLIC_GEMINI_API_KEY,
+  apiKey: process.env.GEMINI_API_KEY,
   modelName: "text-embedding-004",
 });
 
@@ -22,6 +22,7 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
     const files = formData.getAll("files") as File[];
+    console.log(`Received ${files.length} files.`);
 
     if (!files || files.length === 0) {
       return NextResponse.json({ error: "No files uploaded" }, { status: 400 });
@@ -79,6 +80,7 @@ export async function GET(request: NextRequest) {
     let collectionInfo;
     try {
       collectionInfo = await qdrant.getCollection(collectionName);
+      console.log("Collection info:", collectionInfo);
     } catch (error) {
       if (error.status === 404) {
         console.log("Collection does not exist. Creating it...");
@@ -95,6 +97,7 @@ export async function GET(request: NextRequest) {
       }
     }
 
+    // Fetch all points (documents) from the Qdrant collection
     const response = await qdrant.scroll(collectionName, {
       limit: 10000, // Adjust the limit based on your dataset size
       with_payload: true, // Include metadata in the response
