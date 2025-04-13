@@ -27,7 +27,7 @@ export default function Header() {
   return (
     <div className="flex items-center justify-between bg-black px-4 h-[5rem] border-b border-neutral-800">
       <Link className="text-3xl font-bold text-white" href="/dashboard">
-        AI Vita
+        AI cademix
       </Link>
       <div
         onClick={() => setIsOpen(!isOpen)}

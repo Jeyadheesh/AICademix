@@ -13,6 +13,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { FileIcon } from "lucide-react";
 import { MultipleFileSelector } from "./MultiFileSelector";
 import axios from "axios";

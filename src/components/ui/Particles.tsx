@@ -3,12 +3,12 @@ import { Renderer, Camera, Geometry, Program, Mesh } from "ogl";
 
 const defaultColors = ["#000", "#000", "#000"];
 
-const hexToRgb = (hex: any) => {
+const hexToRgb = (hex) => {
   hex = hex.replace(/^#/, "");
   if (hex.length === 3) {
     hex = hex
       .split("")
-      .map((c: any) => c + c)
+      .map((c) => c + c)
       .join("");
   }
   const int = parseInt(hex, 16);
@@ -90,21 +90,8 @@ const Particles = ({
   cameraDistance = 20,
   disableRotation = false,
   className,
-}: {
-  particleCount?: number;
-  particleSpread?: number;
-  speed?: number;
-  particleColors?: string[];
-  moveParticlesOnHover?: boolean;
-  particleHoverFactor?: number;
-  alphaParticles?: boolean;
-  particleBaseSize?: number;
-  sizeRandomness?: number;
-  cameraDistance?: number;
-  disableRotation?: boolean;
-  className?: string;
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef(null);
   const mouseRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -128,7 +115,7 @@ const Particles = ({
     window.addEventListener("resize", resize, false);
     resize();
 
-    const handleMouseMove = (e: any) => {
+    const handleMouseMove = (e) => {
       const rect = container.getBoundingClientRect();
       const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
       const y = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
@@ -188,11 +175,11 @@ const Particles = ({
 
     const particles = new Mesh(gl, { mode: gl.POINTS, geometry, program });
 
-    let animationFrameId: any;
+    let animationFrameId;
     let lastTime = performance.now();
     let elapsed = 0;
 
-    const update = (t: any) => {
+    const update = (t) => {
       animationFrameId = requestAnimationFrame(update);
       const delta = t - lastTime;
       lastTime = t;

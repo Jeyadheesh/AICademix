@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { Trash, Check, X, Plus } from "lucide-react";
 import { toast } from "react-toastify";
 import axios from "axios";
@@ -196,11 +196,8 @@ const AssessmentBox: React.FC<AssessmentBoxProps> = ({
 
   const handlePublish = async () => {
     setGenerating!(true); // Show loading spinner
-    console.log(title);
-
     if (!title) {
       toast.error("Please provide a title for the assessment.");
-      setGenerating!(false);
       return;
     }
 

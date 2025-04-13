@@ -2,7 +2,9 @@ import { HfInference } from "@huggingface/inference";
 import { GoogleGenAI, PersonGeneration } from "@google/genai";
 
 const client = new HfInference(process.env.NEXT_PUBLIC_HUGGINGFACE_API_KEY);
-const ai = new GoogleGenAI({ apiKey: "AIzaSyBPeIdXELoTVH9cgpWLmYZ2u8bHJfHoJ5w" });
+const ai = new GoogleGenAI({
+  apiKey: "AIzaSyBPeIdXELoTVH9cgpWLmYZ2u8bHJfHoJ5w",
+});
 
 type props = {
   topic: string;
@@ -15,9 +17,9 @@ export async function generateImage({
   context,
   panelDescription,
   topic,
-  previousPanelDescription
+  previousPanelDescription,
 }: props) {
-const prompt = `Generate a colorful, fun, and age-appropriate comic book style image based on the following description:
+  const prompt = `Generate a colorful, fun, and age-appropriate comic book style image based on the following description:
 
 **Story Topic**: ${topic}
 **Overall Story Context**: ${context}
@@ -34,8 +36,7 @@ Important :
 - Don't include any text, labels, or speech bubbles in the generated image.
 `;
 
-  
- let attempts = 0;
+  let attempts = 0;
   const maxRetries = 5;
   const delay = 2000; // 2 seconds delay between retries
   while (attempts < maxRetries) {
@@ -62,7 +63,7 @@ Important :
 
     attempts++;
     if (attempts < maxRetries) {
-      await new Promise(resolve => setTimeout(resolve, delay)); // wait before retry
+      await new Promise((resolve) => setTimeout(resolve, delay)); // wait before retry
     }
   }
 }

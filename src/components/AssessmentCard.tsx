@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import useUser from "@/store/useUser";
 
-const AssessmentCard = ({ assessment }: { assessment: Assessment }) => {
+const AssessmentCard = ({ assessment }) => {
   const router = useRouter();
   const { currentUser } = useUser();
 

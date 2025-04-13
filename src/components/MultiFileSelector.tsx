@@ -61,7 +61,7 @@ export function MultipleFileSelector({ onUpload }: MultipleFileSelectorProps) {
           onChange={handleFileChange}
           multiple
           className="hidden"
-          accept="*/*"
+          accept="application/pdf"
         />
       </div>
     </div>
