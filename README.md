@@ -70,7 +70,7 @@ Before getting started, ensure you have the following installed:
 ## Installation and Setup
 1. **Clone the Repository:**
    ```bash
-   [git clone https://github.com/yourusername/AICademix.git](https://github.com/Jeyadheesh/AICademix.git)
+   git clone https://github.com/Jeyadheesh/AICademix.git
    cd AICademix
    ```
 
