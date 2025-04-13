@@ -128,14 +128,14 @@ const ComicGenerator = () => {
           4 * (count / 4) - 4 + 1 + i + 3 + 1
         );
 
-        let image:string;
+        let image: string;
         let success = false;
         let retryCount = 0;
         const maxRetries = 5;
 
         while (!success && retryCount < maxRetries) {
           try {
-            image = await generateImage({
+            image = (await generateImage({
               topic,
               context,
               panelDescription:
@@ -144,7 +144,7 @@ const ComicGenerator = () => {
                 4 * (count / 4) - 4 + i > 0
                   ? updatedStory[4 * (count / 4) - 4 + 1 + i + 3]
                   : undefined,
-            }) as string;
+            })) as string;
             success = true;
           } catch (error) {
             retryCount++;
@@ -162,7 +162,7 @@ const ComicGenerator = () => {
         setImages((prev) => {
           const newImages = [...prev];
           newImages[4 * (count / 4) - 4 + 1 + i + 3] = {
-            image: image ,
+            image: image,
             text: updatedStory[4 * (count / 4) - 4 + 1 + i + 3].caption,
           };
           return newImages;
@@ -184,8 +184,8 @@ const ComicGenerator = () => {
         query: topic,
         filenames: selectedFiles.map((file) => file.name),
       });
-      
-      const context = response.data.context;      
+
+      const context = response.data.context;
       if (!context || context.trim() === "") {
         console.error(
           "No relevant information found in the uploaded documents."

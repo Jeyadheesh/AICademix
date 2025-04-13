@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select";
 
 interface Props {
-  handleSelectChange: (value: llmModel) => void;
+  handleSelectChange: (value: any) => void;
 }
 
 export default function LLMSelect({ handleSelectChange }: Props) {

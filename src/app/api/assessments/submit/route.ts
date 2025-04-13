@@ -143,7 +143,8 @@ export async function POST(req: NextRequest) {
 
       // Count how many keywords from correct answer appear in student answer
       const matchedKeywords = correctAnswerKeywords.filter(
-        (keyword) => studentAnswer.includes(keyword) && keyword.length > 3
+        (keyword: string) =>
+          studentAnswer.includes(keyword) && keyword.length > 3
       );
 
       const keywordRatio =

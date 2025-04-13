@@ -4,11 +4,11 @@ import Assessment from "@/model/assessment.model";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { assessment_id: string } }
+  { params }: { params: Promise<{ assessment_id: string }> }
 ) {
   try {
     await connectDB();
-    const { assessment_id } = params;
+    const { assessment_id } = await params;
 
     const assessment = await Assessment.findById(assessment_id);
     if (!assessment) {
@@ -30,11 +30,11 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { assessment_id: string } }
+  { params }: { params: Promise<{ assessment_id: string }> }
 ) {
   try {
     await connectDB();
-    const { assessment_id } = params;
+    const { assessment_id } = await params;
     const { title, mcq, fillInBlanks, shortAnswer } = await req.json();
 
     // Find and update the assessment
