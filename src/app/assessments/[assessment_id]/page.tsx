@@ -139,7 +139,7 @@ export default function EditAssessmentPage() {
         <div className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center">
           <div className="flex items-center gap-4 text-2xl">
             <FaGear className="animate-spin text-white" />
-            <span className="text-white">Weaving your rhyme...</span>
+            <span className="text-white">Weaving your assessments...</span>
           </div>
         </div>
       )}
