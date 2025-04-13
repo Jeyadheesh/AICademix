@@ -118,17 +118,21 @@ const RhymesGeneratorPage = () => {
         context,
       });
       console.log("lyrics", lyrics);
-
-      const { data } = await axios.post(
-        `http://localhost:3001/api/custom_generate`,
-        {
-          prompt: lyrics.lyrics,
-          // tags: "pop metal male melancholic",
-          // title: "Silent Battlefield",
-          make_instrumental: false,
-          wait_audio: true,
-        }
+      console.log(
+        "prompt: ",
+        "I'll give you the lyric only create song based on that." +
+          lyrics.lyrics.substring(0, 260)
       );
+
+      const { data } = await axios.post(`http://localhost:3001/api/generate`, {
+        prompt:
+          "I'll give you the lyric only create song based on that." +
+          lyrics.lyrics.substring(0, 260),
+        // tags: "pop metal male melancholic",
+        // title: "Silent Battlefield",
+        make_instrumental: false,
+        wait_audio: true,
+      });
 
       const audio_url = data[0].audio_url;
       console.log("audio_url", audio_url);
