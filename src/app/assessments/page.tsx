@@ -1,8 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import React, { useState } from "react";
 import axios from "axios";
 import { useDocumentStore } from "@/store/useDocumentStore";
 import { DocumentModal } from "@/components/DocumentModal";
