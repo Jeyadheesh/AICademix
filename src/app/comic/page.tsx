@@ -128,7 +128,7 @@ const ComicGenerator = () => {
           4 * (count / 4) - 4 + 1 + i + 3 + 1
         );
 
-        let image;
+        let image:string;
         let success = false;
         let retryCount = 0;
         const maxRetries = 5;
@@ -144,7 +144,7 @@ const ComicGenerator = () => {
                 4 * (count / 4) - 4 + i > 0
                   ? updatedStory[4 * (count / 4) - 4 + 1 + i + 3]
                   : undefined,
-            });
+            }) as string;
             success = true;
           } catch (error) {
             retryCount++;
@@ -157,16 +157,12 @@ const ComicGenerator = () => {
           }
         }
 
-        console.log("Image generated:", image);
         console.log(updatedStory[4 * (count / 4) - 4 + 1 + i + 3].caption);
 
         setImages((prev) => {
           const newImages = [...prev];
           newImages[4 * (count / 4) - 4 + 1 + i + 3] = {
-            image:
-              llmModel == "dalle"
-                ? image!
-                : URL.createObjectURL(image! as Blob),
+            image: image ,
             text: updatedStory[4 * (count / 4) - 4 + 1 + i + 3].caption,
           };
           return newImages;
